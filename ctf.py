@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 import base64
+import hashlib
 import urllib.parse
 
 
@@ -47,5 +48,18 @@ class CTF():
                 await self.bot.say("```%s```" % urllib.parse.quote(input_string))
         except:
             await self.bot.say("An error occured!")
+
+    @commands.command(name="md5",
+            description="Calculates MD5 value of a string",
+            brief="MD5 hash")
+    async def md5(self, input_string : str):
+        try:
+            h = hashlib.md5()
+            h.update(input_string.encode("utf-8"))
+            output = h.hexdigest()
+            await self.bot.say("```%s```" % output)
+        except:
+            await self.bot.say("An error occured!")
+
 
 
