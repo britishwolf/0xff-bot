@@ -27,6 +27,27 @@ class Encoding():
                 await self.bot.say("```%s```" % base64.b64encode(byted_str).decode('utf-8').replace('\n', ''))
         except:
             await self.bot.say("An error occured!")
+
+    @commands.command(name="base32",
+        description="Encodes/decodes base32 (example: base32 d <string>)",
+        brief="Encodes/decodes base32",
+        aliases=['b32'])
+    async def base32(self, mode : str, input_string : str):
+        accepted_modes = ["d", "decode", "e", "encode"]
+        if not mode in accepted_modes:
+            await self.bot.say("Enter a valid mode!")
+            return
+
+        byted_str = str.encode(input_string)
+
+        try:
+            if mode[0] == "d":
+                await self.bot.say("```%s```" % base64.b32decode(byted_str).decode('utf-8'))
+            else:
+                await self.bot.say("```%s```" % base64.b32encode(byted_str).decode('utf-8').replace('\n', ''))
+        except:
+            await self.bot.say("An error occured!")
+
                 
     @commands.command(name="url",
         description="Encodes/decodes string with url encoding",
