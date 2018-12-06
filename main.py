@@ -5,8 +5,10 @@ from hashing import Hashing
 from encoding import Encoding
 from ciphers import Ciphers
 from utilities import Utilities
+from ctfs import CTFs
 
 from discord.ext.commands import Bot
+import discord
 import asyncio
 import os
 
@@ -20,6 +22,7 @@ client.add_cog(Hashing(client))
 client.add_cog(Encoding(client))
 client.add_cog(Ciphers(client))
 client.add_cog(Utilities(client))
+client.add_cog(CTFs(client))
 
 @client.event
 async def on_ready():
@@ -28,12 +31,7 @@ async def on_ready():
 
 async def list_servers():
     await client.wait_until_ready()
-    while not client.is_closed:
-        print("---------------")
-        print("Current servers:")
-        for server in client.servers:
-            print(server.name)
-        await asyncio.sleep(600)
+    await client.change_presence(game=discord.Game(name="Despacito 3 feat. PewDiePie", url="https://www.youtube.com/watch?v=Vp1R4bb3FMw"))
 
 client.loop.create_task(list_servers())
 client.run(TOKEN)
