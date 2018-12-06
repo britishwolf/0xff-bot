@@ -1,4 +1,8 @@
-from ctf import CTF
+import sys
+sys.path.insert(0, "./cogs")
+
+from hashing import Hashing
+from encoding import Encoding
 
 from discord.ext.commands import Bot
 import asyncio
@@ -9,7 +13,9 @@ TOKEN = os.environ["DISCORD_TOKEN"]
 BOT_PREFIX = (".", ":")
 
 client = Bot(command_prefix=BOT_PREFIX)
-client.add_cog(CTF(client))
+
+client.add_cog(Hashing(client))
+client.add_cog(Encoding(client))
 
 @client.event
 async def on_ready():
