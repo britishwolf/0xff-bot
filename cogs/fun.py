@@ -14,12 +14,8 @@ class Fun():
         pass_context=True)
     async def fuck(self, ctx, person : discord.User=None):
 
-        texts = ["%s drooped his soap in a prison. Whoops!",
-                "%s is currently being banged by some hunky guys.",
-                "%s has his orifices full of tasty meat",
-                "Daddybot is having an intercourse with %s",
-                "%s is being thoroughly satisfied."]
-
+        with open("cogs/pleasures.txt", "r") as f:
+            texts = f.readlines()
         message = random.choice(texts)
         if person is None:
             await self.bot.say(message % ctx.message.author.mention)
