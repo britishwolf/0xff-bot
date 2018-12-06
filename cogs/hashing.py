@@ -67,10 +67,11 @@ class Hashing():
             return
 
         if r["result"][input_hash] is None:
-            await self.bot.say("```Unknown hash [%s]```" % input_hash)
+            em = discord.Embed(title="Unknown hash", description="The supplied hash (%s) couldn't be found in the database" % input_hash, type="rich", color=14490652)
+            await self.bot.say(embed=em)
             return
 
-        em = discord.Embed(title="**Hash cracked!**", description=input_hash, type="rich", color=107273)
+        em = discord.Embed(title="Hash cracked!", description=input_hash, type="rich", color=107273)
         em.add_field(name="Plaintext", value=r["result"][input_hash]["plain"], inline=False)
         em.add_field(name="Plainhex", value=r["result"][input_hash]["hexplain"], inline=False)
         em.add_field(name="Algorighm", value=r["result"][input_hash]["algorithm"], inline=False)
