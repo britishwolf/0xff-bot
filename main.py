@@ -35,7 +35,6 @@ async def on_message(message):
     # print("Command received: " + str(message.content))
     await client.process_commands(message)
 
-
 async def list_servers():
     await client.wait_until_ready()
     await client.change_presence(game=discord.Game(name="Despacito 3 feat. PewDiePie", url="https://www.youtube.com/watch?v=Vp1R4bb3FMw"))
